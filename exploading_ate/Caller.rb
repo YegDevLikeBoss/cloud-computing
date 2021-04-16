@@ -14,14 +14,19 @@ class Caller
         @state = State::FREE
     end
 
-    def call(ate)
+    def call(ate, number)
         puts "----\nPhone -> connecting to ATE"
         if ate.class != ATE
             puts "Phone -> not an ATE\n----"
         else
             puts "Phone -> connected\n----"
-            ate
+            ate.connect(@number, number)
         end
+    end
+
+    def decline(ate)
+        puts "----\nPhone -> declining\n----"
+        ate.disconnect(@number)
     end
 
 end
